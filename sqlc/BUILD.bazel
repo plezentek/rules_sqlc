@@ -1,0 +1,61 @@
+# Copyright 2020 Plezentek, Inc. All rights reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+filegroup(
+    name = "all_rules",
+    testonly = True,
+    srcs = glob(["*.bzl"]) + [
+        "//sqlc/toolchain:all_rules",
+        "//sqlc/private:all_rules",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "all_files",
+    testonly = True,
+    srcs = glob(["**"]) + [
+        "//sqlc/toolchain:all_files",
+        "//sqlc/private:all_files",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+toolchain_type(
+    name = "toolchain",
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "def",
+    srcs = ["def.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//sqlc/private:providers",
+        "//sqlc/private:sqlc_toolchain",
+        "//sqlc/private/rules:library",
+    ],
+)
+
+bzl_library(
+    name = "deps",
+    srcs = ["deps.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//sqlc/private:release",
+        "//sqlc/private:repo",
+    ],
+)
