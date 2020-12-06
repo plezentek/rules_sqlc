@@ -46,7 +46,8 @@ bzl_library(
     deps = [
         "//sqlc/private:providers",
         "//sqlc/private:sqlc_toolchain",
-        "//sqlc/private/rules:library",
+        "//sqlc/private/rules:package",
+        "//sqlc/private/rules:release",
     ],
 )
 

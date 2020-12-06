@@ -13,11 +13,11 @@
 # limitations under the License.
 
 load(
-    "@plezentek_bazel_sqlc//sqlc/private:providers.bzl",
+    "//sqlc/private:providers.bzl",
     "SQLCRelease",
 )
 load(
-    "@plezentek_bazel_sqlc//sqlc/private/rules_go/lib:platforms.bzl",
+    "//sqlc/private/rules_go/lib:platforms.bzl",
     "PLATFORMS",
 )
 

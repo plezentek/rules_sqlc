@@ -92,7 +92,7 @@ sqlc_package = rule(
         ),
         "engine": attr.string(
             default = "postgresql",
-            doc = "Either postgresql or mysql. Defaults to postgresql. MySQL support is experimental",
+            doc = "Either postgresql or mysql. MySQL support is experimental",
             values = ["postgresql", "mysql", "mysql:beta", "_lemon", "_dolphin", "_elephant"],
         ),
         "overrides": attr.string_dict(
@@ -100,26 +100,37 @@ sqlc_package = rule(
         ),
         "emit_json_tags": attr.bool(
             default = False,
-            doc = "If true, add JSON tags to generated structs. Defaults to false.",
+            doc = "If true, add JSON tags to generated structs",
         ),
         "emit_prepared_queries": attr.bool(
             default = False,
-            doc = "If true, include support for prepared queries. Defaults to false.",
+            doc = "If true, include support for prepared queries",
         ),
         "emit_interface": attr.bool(
             default = False,
-            doc = "If true, output a Querier interface in the generated package. Defaults to false.",
+            doc = "If true, output a Querier interface in the generated package",
         ),
         "emit_exact_table_names": attr.bool(
             default = False,
-            doc = "If true, struct names will mirror table names. Otherwise, sqlc attempts to singularize plural table names. Defaults to false.",
+            doc = "If true, struct names will mirror table names. Otherwise, sqlc attempts to singularize plural table names",
         ),
         "emit_empty_slices": attr.bool(
             default = False,
-            doc = "If true, slices returned by :many queries will be empty instead of nil. Defaults to false.",
+            doc = "If true, slices returned by :many queries will be empty instead of nil",
         ),
     },
-    doc = "Generates Go source files for database package from provided SQL code",
+    doc = """
+sqlc generates **fully type-safe idiomatic Go code** from SQL.
+
+Example:
+```
+    sqlc_package(
+        name = "database",
+        queries = "query.sql",
+        schema = "schema.sql",
+    )
+```
+""",
     executable = False,
     output_to_genfiles = True,
     toolchains = ["@plezentek_bazel_sqlc//sqlc:toolchain"],

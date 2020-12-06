@@ -3,7 +3,11 @@
 This repository contains rules for Bazel that allow you to compile your SQL
 files into a Go package that can be used for type-safe database code.
 
-# I'm impatient, how do I use them?
+## Table of Contents
+1. [Setup](#setup)
+2. [Usage](#usage)
+3. [Documentation](#documentation)
+
 ## Setup
 The first thing you need to do is load the rules in your WORKSPACE file to make
 them available in your Bazel repository.
@@ -88,3 +92,10 @@ go_library(
     importpath = "example.com/owner/repo/database",
 )
 ```
+
+# Documentation
+Full details on the use of the sqlc_package rule can be found in the [rules
+documentation](docs/rules.md).
+
+The `SQLCRelease` bazel provider (for writers of further bazel rules) can be
+found in the [provider documentation](docs/providers.md).
