@@ -44,6 +44,17 @@ bzl_library(
 )
 
 bzl_library(
+    name = "actions",
+    srcs = [
+        "actions.bzl",
+    ],
+    visibility = ["//sqlc:__subpackages__"],
+    deps = [
+        "@bazel_skylib//lib:versions.bzl",
+    ],
+)
+
+bzl_library(
     name = "providers",
     srcs = [
         "providers.bzl",
@@ -55,8 +66,12 @@ bzl_library(
     name = "sqlc_toolchain",
     srcs = [
         "sqlc_toolchain.bzl",
+        "//sqlc/private/rules_go/lib:platforms",
     ],
     visibility = ["//sqlc:__subpackages__"],
+    deps = [
+        "//sqlc/private:providers.bzl",
+    ],
 )
 
 bzl_library(

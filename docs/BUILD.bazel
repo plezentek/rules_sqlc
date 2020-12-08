@@ -12,37 +12,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
-filegroup(
-    name = "all_rules",
-    srcs = glob(["**/*.bzl"]),
-    visibility = ["//visibility:public"],
-)
-
-filegroup(
-    name = "all_files",
-    testonly = True,
-    srcs = glob(["**"]),
-    visibility = ["//visibility:public"],
-)
-
 bzl_library(
-    name = "release",
-    srcs = ["release.bzl"],
-    visibility = ["//sqlc:__subpackages__"],
+    name = "docs",
+    srcs = ["docs.bzl"],
+    visibility = ["//visibility:public"],
     deps = [
-        "@plezentek_bazel_sqlc//sqlc/private:providers",
+        "//sqlc:def",
     ],
 )
 
-bzl_library(
-    name = "package",
-    srcs = [
-        "package.bzl",
+stardoc(
+    name = "sqlc_package-docs",
+    out = "rules.md",
+    input = "docs.bzl",
+    symbol_names = [
+        "sqlc_package",
     ],
-    visibility = ["//sqlc:__subpackages__"],
-    deps = [
-        "@plezentek_bazel_sqlc//sqlc/private:actions",
+    deps = [":docs"],
+)
+
+stardoc(
+    name = "sqlc_provder-docs",
+    out = "providers.md",
+    input = "docs.bzl",
+    symbol_names = [
+        "SQLCRelease",
     ],
+    deps = [":docs"],
 )
