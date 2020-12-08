@@ -1,0 +1,100 @@
+# Copyright 2020 Plezentek, Inc. All rights reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("//sqlc:def.bzl", "sqlc_package")
+
+sqlc_package(
+    name = "package_name_sqlc",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+sqlc_package(
+    name = "package_name_app_db_sqlc",
+    package = "app_db",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+sqlc_package(
+    name = "package_name_db_sqlc",
+    package = "db",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+sqlc_package(
+    name = "package_name_database_sqlc",
+    package = "database",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+sh_test(
+    name = "package_name_",
+    srcs = ["package_name_test.sh"],
+    args = [
+        "package_name_sqlc",
+        "$(locations :package_name_sqlc)",
+    ],
+    data = [
+        ":package_name_sqlc",
+    ],
+)
+
+sh_test(
+    name = "package_name_app_db",
+    srcs = ["package_name_test.sh"],
+    args = [
+        "app_db",
+        "$(locations :package_name_app_db_sqlc)",
+    ],
+    data = [
+        ":package_name_app_db_sqlc",
+    ],
+)
+
+sh_test(
+    name = "package_name_db",
+    srcs = ["package_name_test.sh"],
+    args = [
+        "db",
+        "$(locations :package_name_db_sqlc)",
+    ],
+    data = [
+        ":package_name_db_sqlc",
+    ],
+)
+
+sh_test(
+    name = "package_name_database",
+    srcs = ["package_name_test.sh"],
+    args = [
+        "database",
+        "$(locations :package_name_database_sqlc)",
+    ],
+    data = [
+        ":package_name_database_sqlc",
+    ],
+)
+
+test_suite(
+    name = "package_name",
+    tests = [
+        "package_name_",
+        "package_name_app_db",
+        "package_name_database",
+        "package_name_db",
+    ],
+)

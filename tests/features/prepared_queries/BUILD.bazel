@@ -1,0 +1,103 @@
+# Copyright 2020 Plezentek, Inc. All rights reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("//sqlc:def.bzl", "sqlc_package")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/plezentek/bazel-sqlc/tests/features/prepared_queries
+gazelle(name = "gazelle")
+
+load(
+    "@io_bazel_rules_go//go:def.bzl",
+    "go_library",
+    "go_test",
+)
+
+sqlc_package(
+    name = "prepared_queries_enabled_sqlc",
+    emit_prepared_queries = True,
+    package = "enabled_database",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+sqlc_package(
+    name = "prepared_queries_disabled_sqlc",
+    emit_prepared_queries = False,
+    package = "disabled_database",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+go_library(
+    name = "prepared_queries_enabled_database",
+    srcs = [":prepared_queries_enabled_sqlc"],
+    importpath = "github.com/plezentek/bazel-sqlc/tests/features/prepared_queries/enabled_database",
+    visibility = [":__subpackages__"],
+)
+
+go_library(
+    name = "prepared_queries_disabled_database",
+    srcs = [":prepared_queries_disabled_sqlc"],
+    importpath = "github.com/plezentek/bazel-sqlc/tests/features/prepared_queries/disabled_database",
+    visibility = [":__subpackages__"],
+)
+
+go_library(
+    name = "prepared_queries_enabled_library",
+    srcs = ["main.go"],
+    importpath = "github.com/plezentek/bazel-sqlc/tests/features/prepared_queries",
+    visibility = ["//visibility:private"],
+    deps = [
+        ":prepared_queries_enabled_database",
+    ],
+)
+
+go_library(
+    name = "prepared_queries_disabled_library",
+    srcs = ["main.go"],
+    importpath = "github.com/plezentek/bazel-sqlc/tests/features/prepared_queries",
+    visibility = ["//visibility:private"],
+    deps = [
+        ":prepared_queries_disabled_database",
+    ],
+)
+
+go_test(
+    name = "prepared_queries_enabled_test",
+    srcs = ["prepared_queries_enabled_test.go"],
+    embed = [":prepared_queries_enabled_library"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":prepared_queries_enabled_database",
+    ],
+)
+
+go_test(
+    name = "prepared_queries_disabled_test",
+    srcs = ["prepared_queries_disabled_test.go"],
+    embed = [":prepared_queries_disabled_library"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":prepared_queries_disabled_database",
+    ],
+)
+
+test_suite(
+    name = "prepared_queries",
+    tests = [
+        "prepared_queries_disabled_test",
+        "prepared_queries_enabled_test",
+    ],
+)

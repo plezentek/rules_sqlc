@@ -3,3 +3,6 @@ bazel-bin
 bazel-genfiles
 bazel-out
 bazel-testlogs
+bazel-bazel-sqlc
+node_modules
+yarn.lock

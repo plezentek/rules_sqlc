@@ -1,0 +1,66 @@
+# Copyright 2020 Plezentek, Inc. All rights reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("//sqlc:def.bzl", "sqlc_package")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/plezentek/bazel-sqlc/tests/integration/sqlite_rubenv_sql_migrate
+gazelle(name = "gazelle")
+
+load(
+    "@io_bazel_rules_go//go:def.bzl",
+    "go_library",
+    "go_test",
+)
+
+sqlc_package(
+    name = "sqlite_rubenv_sql_migrate_sqlc",
+    package = "database",
+    queries = ["query.sql"],
+    schema = ["schema.sql"],
+)
+
+go_library(
+    name = "sqlite_rubenv_sql_migrate_database",
+    srcs = [":sqlite_rubenv_sql_migrate_sqlc"],
+    importpath = "github.com/plezentek/bazel-sqlc/tests/integration/sqlite_rubenv_sql_migrate/database",
+    visibility = [":__subpackages__"],
+)
+
+go_library(
+    name = "sqlite_rubenv_sql_migrate_library",
+    srcs = ["main.go"],
+    importpath = "github.com/plezentek/bazel-sqlc/tests/integration/sqlite_rubenv_sql_migrate",
+    visibility = ["//visibility:private"],
+)
+
+go_test(
+    name = "sqlite_rubenv_sql_migrate_test",
+    srcs = ["integration_sqlite_test.go"],
+    data = ["schema.sql"],
+    embed = [":sqlite_rubenv_sql_migrate_library"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":sqlite_rubenv_sql_migrate_database",
+        "@com_github_mattn_go_sqlite3//:go-sqlite3",
+        "@com_github_rubenv_sql_migrate//:sql-migrate",
+    ],
+)
+
+test_suite(
+    name = "sqlite_rubenv_sql_migrate",
+    tests = [
+        "sqlite_rubenv_sql_migrate_test",
+    ],
+)
