@@ -16,14 +16,14 @@ them available in your Bazel repository.
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "plezentek_bazel_sqlc",
+    name = "com_plezentek_rules_sqlc",
     sha256 = "<PLACEHOLDER>",
     urls = [
         "https://github.com/plezentek/bazek-sqlc/releases/download/v1.0.0/bazel-sqlc-v1.0.0.tar.gz"
     ],
 )
 
-load("@plezentek_bazel_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
+load("@com_plezentek_rules_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
 
 sqlc_rules_dependencies()
 
@@ -44,12 +44,12 @@ with `git_repository`
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
-    name = "plezentek_bazel_sqlc",
+    name = "com_plezentek_rules_sqlc",
     branch = "initial_version",
     remote = "https://github.com/dmayle/bazel-sqlc",
 )
 
-load("@plezentek_bazel_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
+load("@com_plezentek_rules_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
 
 sqlc_rules_dependencies()
 
@@ -61,7 +61,7 @@ In order to generate a Go package called `database`, use the following
 `sql_package` rule.
 
 ```Starlark
-load("@plezentek_bazel_sqlc//sqlc:def.bzl", "sqlc_package")
+load("@com_plezentek_rules_sqlc//sqlc:def.bzl", "sqlc_package")
 
 sqlc_package(
     name = "product_database",
@@ -76,7 +76,7 @@ order to compile a Go library. Notice how the `package` and the `importpath`
 coincide.
 
 ```Starlark
-load("@plezentek_bazel_sqlc//sqlc:def.bzl", "sqlc_package")
+load("@com_plezentek_rules_sqlc//sqlc:def.bzl", "sqlc_package")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 sqlc_package(

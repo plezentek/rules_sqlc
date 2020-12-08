@@ -133,5 +133,5 @@ Example:
 """,
     executable = False,
     output_to_genfiles = True,
-    toolchains = ["@plezentek_bazel_sqlc//sqlc:toolchain"],
+    toolchains = ["@com_plezentek_rules_sqlc//sqlc:toolchain"],
 )

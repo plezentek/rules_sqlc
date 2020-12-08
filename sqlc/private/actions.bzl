@@ -25,7 +25,7 @@ def sqlc_configure(ctx, params, queries, schemas, out, config_path_depth):
 
     # We check the version of the toolchain we're using so that we support the
     # proper features.
-    toolchain = ctx.toolchains["@plezentek_bazel_sqlc//sqlc:toolchain"]
+    toolchain = ctx.toolchains["@com_plezentek_rules_sqlc//sqlc:toolchain"]
     toolchain_version = toolchain.release.version
 
     # Here we convert our overrides attribute to something that sqlc can
@@ -104,7 +104,7 @@ def sqlc_configure(ctx, params, queries, schemas, out, config_path_depth):
 def sqlc_compile(ctx, config_file, config_path_depth, srcs, out):
     """Compile a database library from SQLC config and sources"""
 
-    toolchain = ctx.toolchains["@plezentek_bazel_sqlc//sqlc:toolchain"]
+    toolchain = ctx.toolchains["@com_plezentek_rules_sqlc//sqlc:toolchain"]
 
     # The following hackery is because our toolchain executable needs to be run
     # from the same directory as the config file, which means we need to do

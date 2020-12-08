@@ -17,7 +17,7 @@ load(
     "generate_toolchain_names",
 )
 load(
-    "@plezentek_bazel_sqlc//sqlc/private/skylib/lib:versions.bzl",
+    "@com_plezentek_rules_sqlc//sqlc/private/skylib/lib:versions.bzl",
     "versions",
 )
 load(
@@ -112,7 +112,7 @@ def _sqlc_download_release_impl(ctx):
     ctx.file("ROOT")
     ctx.template(
         "BUILD.bazel",
-        Label("@plezentek_bazel_sqlc//sqlc/private:BUILD.sqlc.bazel"),
+        Label("@com_plezentek_rules_sqlc//sqlc/private:BUILD.sqlc.bazel"),
         executable = False,
         substitutions = {
             "{goos}": goos,
