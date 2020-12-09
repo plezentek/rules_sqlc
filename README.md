@@ -17,9 +17,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "com_plezentek_rules_sqlc",
-    sha256 = "<PLACEHOLDER>",
+    sha256 = "f75a84af8a907917293f92cd12168e87f30a9f277119ffe90d62edf6e09cbab3",
     urls = [
-        "https://github.com/plezentek/bazek-sqlc/releases/download/v1.0.0/bazel-sqlc-v1.0.0.tar.gz"
+        "https://github.com/plezentek/rules_sqlc/releases/download/v0.9.0/rules_sqlc-v0.9.0.tar.gz"
     ],
 )
 
@@ -38,15 +38,15 @@ sqlc_register_toolchains(version="1.5.0")
 ```
 
 If you'd like to use the development version of these rules, you can fetch them
-with `git_repository`
+with `git_repository` by setting the `commit` parameter to a recent commit hash.
 
 ```Starlark
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
     name = "com_plezentek_rules_sqlc",
-    branch = "initial_version",
-    remote = "https://github.com/dmayle/bazel-sqlc",
+    commit = "<RECENT_COMMIT>",
+    remote = "https://github.com/plezentek/rules_sqlc",
 )
 
 load("@com_plezentek_rules_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
