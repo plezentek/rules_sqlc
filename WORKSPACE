@@ -26,7 +26,6 @@
 workspace(name = "com_plezentek_rules_sqlc")
 
 load("@com_plezentek_rules_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # sqlc_rules_dependencies declares the dependencies of com_plezentek_rules_sqlc.
 # Any project that depends on com_plezentek_rules_sqlc should call this.
@@ -45,6 +44,19 @@ git_repository(
 load("@io_bazel_stardoc//:setup.bzl", "stardoc_repositories")
 
 stardoc_repositories()
+
+git_repository(
+    name = "rules_pkg",
+    branch = "issue_50",
+    patch_cmds = ["mv pkg/* ."],
+    remote = "https://github.com/dmayle/rules_pkg",
+)
+
+load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
+
+rules_pkg_dependencies()
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Download the Go rules.
 http_archive(

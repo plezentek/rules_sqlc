@@ -31,15 +31,17 @@ stardoc(
     symbol_names = [
         "sqlc_package",
     ],
+    visibility = ["//:__subpackages__"],
     deps = [":docs"],
 )
 
 stardoc(
-    name = "sqlc_provder-docs",
+    name = "sqlc_provider-docs",
     out = "providers.md",
     input = "docs.bzl",
     symbol_names = [
         "SQLCRelease",
     ],
+    visibility = ["//:__subpackages__"],
     deps = [":docs"],
 )

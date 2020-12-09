@@ -11,3 +11,34 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+load("@rules_pkg//:pkg.bzl", "pkg_tar", "pkg_zip")
+
+pkg_tar(
+    name = "release",
+    testonly = True,
+    srcs = [
+        ":all_files",
+    ],
+    extension = "tar.gz",
+    package_base = "",
+    package_dir = "/",
+    package_file_name = "rules_sqlc-VERSION.tar.gz",
+    strip_prefix = "NONE",  # Prevent flattening of archive
+    visibility = [":__subpackages__"],
+)
+
+filegroup(
+    name = "all_files",
+    testonly = True,
+    srcs = [
+        "BUILD.bazel",
+        "LICENSE",
+        "README.md",
+        "WORKSPACE",
+        "//docs:sqlc_package-docs",
+        "//docs:sqlc_provider-docs",
+        "//sqlc:all_files",
+    ],
+    visibility = ["//visibility:public"],
+)
