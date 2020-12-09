@@ -32,7 +32,7 @@ bzl_library(
     srcs = ["release.bzl"],
     visibility = ["//sqlc:__subpackages__"],
     deps = [
-        "@plezentek_bazel_sqlc//sqlc/private:providers",
+        "@com_plezentek_rules_sqlc//sqlc/private:providers",
     ],
 )
 
@@ -43,6 +43,6 @@ bzl_library(
     ],
     visibility = ["//sqlc:__subpackages__"],
     deps = [
-        "@plezentek_bazel_sqlc//sqlc/private:actions",
+        "@com_plezentek_rules_sqlc//sqlc/private:actions",
     ],
 )

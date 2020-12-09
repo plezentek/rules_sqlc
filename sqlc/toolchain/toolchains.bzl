@@ -13,7 +13,7 @@
 # limitations under the License.
 
 load(
-    "@plezentek_bazel_sqlc//sqlc/private/rules_go/lib:toolchains.bzl",
+    "@com_plezentek_rules_sqlc//sqlc/private/rules_go/lib:toolchains.bzl",
     _declare_constraints = "declare_constraints",
 )
 

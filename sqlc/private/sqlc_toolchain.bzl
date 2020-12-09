@@ -63,8 +63,8 @@ def declare_toolchains(host, release):
         impl_name = toolchain_name + "-impl"
 
         cgo_constraints = (
-            "@plezentek_bazel_sqlc//sqlc/toolchain:cgo_off",
-            "@plezentek_bazel_sqlc//sqlc/toolchain:cgo_on",
+            "@com_plezentek_rules_sqlc//sqlc/toolchain:cgo_off",
+            "@com_plezentek_rules_sqlc//sqlc/toolchain:cgo_on",
         )
         constraints = [c for c in p.constraints if c not in cgo_constraints]
 
@@ -78,10 +78,10 @@ def declare_toolchains(host, release):
         )
         native.toolchain(
             name = toolchain_name,
-            toolchain_type = "@plezentek_bazel_sqlc//sqlc:toolchain",
+            toolchain_type = "@com_plezentek_rules_sqlc//sqlc:toolchain",
             exec_compatible_with = [
-                "@plezentek_bazel_sqlc//sqlc/toolchain:" + host_goos,
-                "@plezentek_bazel_sqlc//sqlc/toolchain:" + host_goarch,
+                "@com_plezentek_rules_sqlc//sqlc/toolchain:" + host_goos,
+                "@com_plezentek_rules_sqlc//sqlc/toolchain:" + host_goarch,
             ],
             target_compatible_with = constraints,
             toolchain = ":" + impl_name,

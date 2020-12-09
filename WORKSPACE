@@ -23,13 +23,13 @@
 # may use to import it (via an http_archive rule or something similar).
 # It's also the name used in labels that refer to this workspace
 # (for example @rules_go_simple//:deps.bzl).
-workspace(name = "plezentek_bazel_sqlc")
+workspace(name = "com_plezentek_rules_sqlc")
 
-load("@plezentek_bazel_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
+load("@com_plezentek_rules_sqlc//sqlc:deps.bzl", "sqlc_register_toolchains", "sqlc_rules_dependencies")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# sqlc_rules_dependencies declares the dependencies of plezentek_bazel_sqlc.
-# Any project that depends on plezentek_bazel_sqlc should call this.
+# sqlc_rules_dependencies declares the dependencies of com_plezentek_rules_sqlc.
+# Any project that depends on com_plezentek_rules_sqlc should call this.
 sqlc_rules_dependencies()
 
 sqlc_register_toolchains()

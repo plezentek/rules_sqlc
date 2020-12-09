@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@plezentek_bazel_sqlc//sqlc:def.bzl", "declare_toolchains", "sqlc_release")
+load("@com_plezentek_rules_sqlc//sqlc:def.bzl", "declare_toolchains", "sqlc_release")
 
 filegroup(
     name = "sqlc_command",

@@ -35,7 +35,7 @@ def declare_constraints():
     @bazel_tools//platforms:default_platform will be used most of the time).
     """
     for goos, constraint in GOOS_CONSTRAINTS.items():
-        if constraint.startswith("@plezentek_bazel_sqlc//sqlc/toolchain:"):
+        if constraint.startswith("@com_plezentek_rules_sqlc//sqlc/toolchain:"):
             native.constraint_value(
                 name = goos,
                 constraint_setting = "@platforms//os:os",
@@ -47,7 +47,7 @@ def declare_constraints():
             )
 
     for goarch, constraint in GOARCH_CONSTRAINTS.items():
-        if constraint.startswith("@plezentek_bazel_sqlc//sqlc/toolchain:"):
+        if constraint.startswith("@com_plezentek_rules_sqlc//sqlc/toolchain:"):
             native.constraint_value(
                 name = goarch,
                 constraint_setting = "@platforms//cpu:cpu",

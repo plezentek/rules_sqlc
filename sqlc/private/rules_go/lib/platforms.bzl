@@ -135,7 +135,7 @@ CGO_GOOS_GOARCH = {
 
 def _generate_constraints(names, bazel_constraints):
     return {
-        name: bazel_constraints.get(name, "@plezentek_bazel_sqlc//sqlc/toolchain:" + name)
+        name: bazel_constraints.get(name, "@com_plezentek_rules_sqlc//sqlc/toolchain:" + name)
         for name in names
     }
 
@@ -153,7 +153,7 @@ def _generate_platforms():
             name = goos + "_" + goarch,
             goos = goos,
             goarch = goarch,
-            constraints = constraints + ["@plezentek_bazel_sqlc//sqlc/toolchain:cgo_off"],
+            constraints = constraints + ["@com_plezentek_rules_sqlc//sqlc/toolchain:cgo_off"],
             cgo = False,
         ))
         if (goos, goarch) in CGO_GOOS_GOARCH:
@@ -164,7 +164,7 @@ def _generate_platforms():
                 name = goos + "_" + goarch + "_cgo",
                 goos = goos,
                 goarch = goarch,
-                constraints = constraints + ["@plezentek_bazel_sqlc//sqlc/toolchain:cgo_on"] + mingw,
+                constraints = constraints + ["@com_plezentek_rules_sqlc//sqlc/toolchain:cgo_on"] + mingw,
                 cgo = True,
             ))
 
@@ -177,14 +177,14 @@ def _generate_platforms():
             name = "ios_" + goarch,
             goos = "darwin",
             goarch = goarch,
-            constraints = constraints + ["@plezentek_bazel_sqlc//sqlc/toolchain:cgo_off"],
+            constraints = constraints + ["@com_plezentek_rules_sqlc//sqlc/toolchain:cgo_off"],
             cgo = False,
         ))
         platforms.append(struct(
             name = "ios_" + goarch + "_cgo",
             goos = "darwin",
             goarch = goarch,
-            constraints = constraints + ["@plezentek_bazel_sqlc//sqlc/toolchain:cgo_on"],
+            constraints = constraints + ["@com_plezentek_rules_sqlc//sqlc/toolchain:cgo_on"],
             cgo = True,
         ))
 
