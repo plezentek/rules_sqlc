@@ -27,6 +27,7 @@ filegroup(
     name = "all_files",
     testonly = True,
     srcs = [
+        "//sqlc/private/rules:all_files",
         "//sqlc/private/rules_go/lib:all_files",
         "//sqlc/private/skylib/lib:all_files",
     ] + glob(["**"]),
