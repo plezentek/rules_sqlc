@@ -17,9 +17,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "com_plezentek_rules_sqlc",
-    sha256 = "f75a84af8a907917293f92cd12168e87f30a9f277119ffe90d62edf6e09cbab3",
+    sha256 = "<PLACEHOLDER>",
     urls = [
-        "https://github.com/plezentek/rules_sqlc/releases/download/v0.9.0/rules_sqlc-v0.9.0.tar.gz"
+        "https://github.com/plezentek/rules_sqlc/releases/download/v0.9.1/rules_sqlc-v0.9.1.tar.gz"
     ],
 )
 
