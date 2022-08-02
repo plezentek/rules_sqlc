@@ -18,24 +18,24 @@ MIN_SUPPORTED_VERSION = "1.3.0"
 
 SQLC_VERSIONS = {
     "1.14.0": {
-        "darwin_amd64": ("sqlc_v1.14.0_darwin_amd64.tar.gz", "142edd3a92716432ee5b5dd48719e2192530c6b29812b36269fc30f51c41fefb"),
-        "linux_amd64": ("sqlc_v1.14.0_linux_amd64.tar.gz", "80f97a263903bc2376fb2af94ed65ea9846c02863c2da43520fcc4bc13cee849"),
+        "darwin_amd64": ("sqlc_1.14.0_darwin_amd64.tar.gz", "142edd3a92716432ee5b5dd48719e2192530c6b29812b36269fc30f51c41fefb"),
+        "linux_amd64": ("sqlc_1.14.0_linux_amd64.tar.gz", "80f97a263903bc2376fb2af94ed65ea9846c02863c2da43520fcc4bc13cee849"),
     },
     "1.13.0": {
-        "darwin_amd64": ("sqlc_v1.13.0_darwin_amd64.tar.gz", "86dec000375a104a27a61270986f67aa478e0832dc96d26d801b21b12a814ea7"),
-        "linux_amd64": ("sqlc_v1.13.0_linux_amd64.tar.gz", "82db3517d0a4d0e4aeb1afd0f26559184951b1d94ee4f4c6e7c2bd54c84b00bb"),
+        "darwin_amd64": ("sqlc_1.13.0_darwin_amd64.tar.gz", "86dec000375a104a27a61270986f67aa478e0832dc96d26d801b21b12a814ea7"),
+        "linux_amd64": ("sqlc_1.13.0_linux_amd64.tar.gz", "82db3517d0a4d0e4aeb1afd0f26559184951b1d94ee4f4c6e7c2bd54c84b00bb"),
     },
     "1.11.0": {
-        "darwin_amd64": ("sqlc_v1.11.0_darwin_amd64.tar.gz", "f5d5a800bf29dd3175cbec47ad7f424bf5fb887fc9922bd141749982f78bd6ac"),
-        "linux_amd64": ("sqlc_v1.11.0_linux_amd64.tar.gz", "e8d97abff71c7b964e582c16869953940f37506097ee2bc26835f7bf3a2cc9ac"),
+        "darwin_amd64": ("sqlc_1.11.0_darwin_amd64.tar.gz", "f5d5a800bf29dd3175cbec47ad7f424bf5fb887fc9922bd141749982f78bd6ac"),
+        "linux_amd64": ("sqlc_1.11.0_linux_amd64.tar.gz", "e8d97abff71c7b964e582c16869953940f37506097ee2bc26835f7bf3a2cc9ac"),
     },
     "1.10.0": {
-        "darwin_amd64": ("sqlc_v1.10.0_darwin_amd64.tar.gz", "4eb9330c3b2e786bed6e171e7566786021c469543eb9a99365103eec50cb8935"),
-        "linux_amd64": ("sqlc_v1.10.0_linux_amd64.tar.gz", "5d3d1203acb3df6a79d58a53a498e1757ed406e5f6d9e11283f3f8d3cff39050"),
+        "darwin_amd64": ("sqlc_1.10.0_darwin_amd64.tar.gz", "4eb9330c3b2e786bed6e171e7566786021c469543eb9a99365103eec50cb8935"),
+        "linux_amd64": ("sqlc_1.10.0_linux_amd64.tar.gz", "5d3d1203acb3df6a79d58a53a498e1757ed406e5f6d9e11283f3f8d3cff39050"),
     },
     "1.9.0": {
-        "darwin_amd64": ("sqlc_v1.9.0_darwin_amd64.tar.gz", "350adf6848a130fe7a7fbd5b68a28f3bd28fa0658bea43a3e5ac8e53189603d3"),
-        "linux_amd64": ("sqlc_v1.9.0_linux_amd64.tar.gz", "2897b8545ec003cb9c06764558be76ef03a9a7f7ea40a494212a58909316fb34"),
+        "darwin_amd64": ("sqlc_1.9.0_darwin_amd64.tar.gz", "350adf6848a130fe7a7fbd5b68a28f3bd28fa0658bea43a3e5ac8e53189603d3"),
+        "linux_amd64": ("sqlc_1.9.0_linux_amd64.tar.gz", "2897b8545ec003cb9c06764558be76ef03a9a7f7ea40a494212a58909316fb34"),
     },
     "1.8.0": {
         "darwin_amd64": ("sqlc-v1.8.0-darwin-amd64.tar.gz", "e0dd6d39b2e8c996e53fa5fcaa3be511aea7281bb81f4495e74f2b75aa76af46"),
